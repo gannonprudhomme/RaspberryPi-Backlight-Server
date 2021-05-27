@@ -7,9 +7,9 @@ using the [rpi_backlight](https://pypi.org/project/rpi-backlight/) library.
 
 1. Install Python
 
-2. Create a virtual environment: `python -m venv env` then `source env/Scripts/activate` (or `source env/bin/activate` on Unix)
+2. Create a virtual environment: `python3 -m venv env` then `source env/Scripts/activate` (or `source env/bin/activate` on Unix)
 
-3. Run `pip install -r requirements.txt`
+3. Run `pip3 install -r requirements.txt`
 
 4. Run `python main.py` to start the server!
 
