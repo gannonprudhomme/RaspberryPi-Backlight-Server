@@ -10,4 +10,4 @@ jobs:
       - name: pylint
         uses: cclauss/GitHub-Action-for-pylint@master
         with:
-          args: pip install requirements.txt ; pylint .
+          args: pip install requirements.txt ; pylint *.py
