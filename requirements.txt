@@ -1,3 +1,4 @@
+aiohttp==3.7.3
 python-socketio==5.3.0
-rpi_backlight==2.2.0
 pylint==2.8.2
+rpi_backlight==2.2.0

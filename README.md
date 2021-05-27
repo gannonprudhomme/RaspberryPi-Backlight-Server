@@ -7,13 +7,15 @@ using the [rpi_backlight](https://pypi.org/project/rpi-backlight/) library.
 
 1. Install Python
 
-2. Run `pip install -r requirements.txt`
+2. Create a virtual environment: `python -m venv env` then `source env/Scripts/activate` (or `source env/bin/activate` on Unix)
 
-3. Run `python main.py` to start the server!
+3. Run `pip install -r requirements.txt`
+
+4. Run `python main.py` to start the server!
 
 ## Configuration
 
-The default port is [aiohttp]()'s default port, which is 8080. To change it, create a `settings.json`
+The default port is [aiohttp](https://docs.aiohttp.org/en/stable/index.html)'s default port, which is 8080. To change it, create a `settings.json`
 file in the root of the project, and provide a `port` key with the value of the port that is desired.
 
 For example:
