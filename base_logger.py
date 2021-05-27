@@ -8,4 +8,8 @@ def setup_logging():
                         handlers=[ # Log to both a file and stdout
                             logging.FileHandler('logs.log'),
                             logging.StreamHandler(sys.stdout)
-                        ], level=logging.INFO)
+                        ])
+
+# Use a "custom" logger so we don't get log info socket.io itself
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)

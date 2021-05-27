@@ -1,5 +1,5 @@
-import logging
 from rpi_backlight import Backlight
+from base_logger import logger
 
 # Set this to True when testing (e.g. on a Windows computer)
 DEBUG = False
@@ -15,8 +15,8 @@ class RaspberryPi():
             try:
                 self.backlight = Backlight()
             except FileNotFoundError as err:
-                logging.error(err)
-                logging.error('You should probably be running with DEBUG=True')
+                logger.error(err)
+                logger.error('You should probably be running with DEBUG=True')
 
     def shutdown(self):
         """ Shutdown the Pi """
