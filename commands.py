@@ -2,7 +2,7 @@ import logging
 from rpi_backlight import Backlight
 
 # Set this to True when testing (e.g. on a Windows computer)
-DEBUG = True
+DEBUG = False
 
 class RaspberryPi():
     """ Handles RaspberryPi state & commands """
