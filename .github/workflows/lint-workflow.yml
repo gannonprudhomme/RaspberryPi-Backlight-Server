@@ -1,0 +1,13 @@
+name: Linting
+on: push
+
+jobs:
+  lint-backend:
+    name: 'Linting'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: pylint
+        uses: cclauss/GitHub-Action-for-pylint@master
+        with:
+          args: pip install requirements.txt ; pylint .
