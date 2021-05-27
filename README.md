@@ -11,7 +11,7 @@ using the [rpi_backlight](https://pypi.org/project/rpi-backlight/) library.
 
 3. Run `pip3 install -r requirements.txt`
 
-4. Run `python main.py` to start the server!
+4. Run `python3 main.py` to start the server!
 
 ## Configuration
 
