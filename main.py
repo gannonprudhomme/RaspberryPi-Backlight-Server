@@ -71,14 +71,14 @@ def main():
         with open(config_file, "r") as config:
             json_port = json.load(config).get("port")
             if json_port:
-                port = json_port
-                logging.info("Config file %s loaded successfully with port %d",
+                port = int(json_port)
+                logging.info("Config file '%s' loaded successfully with port '%d'",
                              CONFIG_FILE_NAME, port)
             else:
-                logging.warning("Config file %s was loaded, but port was invalid: %s",
+                logging.warning("Config file '%s' was loaded, but port was invalid: %s",
                                 CONFIG_FILE_NAME, str(json_port))
     except FileNotFoundError:
-        logging.warning("Config file %s not found! Using default port of %d",
+        logging.warning("Config file '%s' not found! Using default port of %d",
                         CONFIG_FILE_NAME, DEFAULT_PORT)
 
     sio.attach(app)
