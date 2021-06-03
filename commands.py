@@ -5,6 +5,34 @@ from base_logger import logger
 # Set this to True when testing (e.g. on a Windows computer)
 DEBUG = False
 
+def get_serial_number() -> str:
+    """ Get the serial number from the Pi
+        Source: https://raspberrypi.stackexchange.com/a/2087
+    """
+    cpuserial = "0000000000000000"
+    try:
+        with open('/proc/cpuinfo', 'r') as file:
+            for line in file:
+                if line[0:6]=='Serial':
+                    cpuserial = line[10:26]
+    except FileNotFoundError:
+        cpuserial = "ERROR000000000"
+        logger.error("Cannot get serial number")
+
+    return cpuserial
+
+def get_model() -> str:
+    """ Get the model of the Pi """
+    ret = None
+    try:
+        with open('/proc/device-tree/model') as file:
+            for line in file:
+                ret = line
+    except FileNotFoundError:
+        logger.error("Cannot get device model")
+
+    return ret
+
 class RaspberryPi():
     """ Handles RaspberryPi state & commands """
     def __init__(self):
@@ -18,6 +46,16 @@ class RaspberryPi():
             except FileNotFoundError as err:
                 logger.error(err)
                 logger.error('You should probably be running with DEBUG=True')
+
+    def get_device_info(self): # pylint: disable=no-self-use
+        """ Returns the serial number and model of the Pi """
+        serial = get_serial_number()
+        model = get_model()
+
+        return {
+            "serial": serial,
+            "model": model,
+        }
 
     def shutdown(self):
         """ Shutdown the Pi """

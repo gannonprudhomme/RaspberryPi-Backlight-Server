@@ -51,6 +51,13 @@ def get_data(_, __):
         "brightness": brightness,
     }
 
+@sio.on('get_device_info')
+def get_device_info(_, __):
+    """ Receives event and returns the corresponding device info """
+    info = rpi.get_device_info()
+
+    return info
+
 @sio.event
 def connect(_, data, __):
     """ Handles connect event """
