@@ -1,4 +1,3 @@
-import logging
 import os
 import json
 from aiohttp import web
@@ -19,22 +18,14 @@ def shutdown(_, __):
     logger.info('shutdown')
     rpi.shutdown()
 
-@sio.on('set_screen_power')
-def set_screen_power(_, data):
+@sio.on('set_power')
+def set_power(_, data):
     """ Retrieves event and sets the given Pi screen power value """
     if isinstance(data, bool):
         logger.info('set_screen_power %s', str(data))
-        rpi.set_screen_power(data)
+        rpi.set_power(data)
     else:
         logger.warning('set_screen_power w/ invalid value! %s', str(data))
-
-# Unused - use get_data instead
-@sio.on('get_screen_power')
-def get_screen_power(_, __):
-    """ Retrieves event and returns the corresponding Pi screen power value """
-    value = rpi.get_screen_power()
-    logger.info('get_screen_power %s', str(value))
-    return value
 
 @sio.on('set_brightness')
 def set_brightness(_, data):
@@ -46,23 +37,14 @@ def set_brightness(_, data):
     else:
         logger.warning('set_brightness w/ invalid value! %s', str(data))
 
-# Unused - use get_data instead
-@sio.on('get_brightness')
-def get_brightness(_, __):
-    """ Receives get_brightness event and returns the corresponding brightness """
-    brightness = rpi.get_brightness()
-
-    logger.info('get_brightness %d', brightness)
-
-    return brightness
-
 @sio.on('get_data')
 def get_data(_, __):
     """ Receives get_data event and returns the corresponding brightness and power """
-    power = rpi.get_screen_power()
+    power = rpi.get_power()
     brightness = rpi.get_brightness()
 
-    logger.info('get_data: Power %d Brightness %d', power or -1, brightness)
+    logger.info('get_data: Power %d Brightness %d',
+                power if power is not None else -1 , brightness)
 
     return {
         "power": power,
