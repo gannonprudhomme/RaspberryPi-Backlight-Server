@@ -1,3 +1,4 @@
+import os
 from rpi_backlight import Backlight
 from base_logger import logger
 
@@ -20,7 +21,10 @@ class RaspberryPi():
 
     def shutdown(self):
         """ Shutdown the Pi """
-        # Idk what we do here
+        if not self.backlight:
+            return
+
+        os.system("shutdown now")
 
     def sleep(self):
         """ Make the screen sleep and wake on touch """
@@ -29,14 +33,14 @@ class RaspberryPi():
 
         self.backlight.power = False
 
-    def set_screen_power(self, power: bool):
+    def set_power(self, power: bool):
         """ Sets the backlight screen power """
         if not self.backlight:
             return
 
         self.backlight.power = power
 
-    def get_screen_power(self) -> bool:
+    def get_power(self) -> bool:
         """ Retrieves the backlight screen power """
         if not self.backlight:
             return None
