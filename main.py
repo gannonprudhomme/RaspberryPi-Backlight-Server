@@ -13,7 +13,7 @@ rpi = RaspberryPi()
 sio = socketio.AsyncServer(async_mode='aiohttp')
 
 @sio.on('shutdown')
-def shutdown(_, __):
+def shutdown(_, __ = None):
     """ Receives shutdown event and calls shutdown on the Pi """
     logger.info('shutdown')
     rpi.shutdown()
@@ -55,6 +55,7 @@ def get_data(_, __):
 def get_device_info(_, __):
     """ Receives event and returns the corresponding device info """
     info = rpi.get_device_info()
+    logger.info('get_device_info %s', repr(info))
 
     return info
 
