@@ -3,6 +3,9 @@
 A [Socket.io](https://python-socketio.readthedocs.io/en/latest/index.html) server for controlling an official 7" RaspberryPi Touchscreen Display,
 using the [rpi_backlight](https://pypi.org/project/rpi-backlight/) library.
 
+Currently used to control my Pi's touchscreen from HomeAssistant using
+ [ha-rpi-backlight](https://github.com/gannonprudhomme/ha-rpi-backlight).
+
 ## Installation
 
 1. Install Python
